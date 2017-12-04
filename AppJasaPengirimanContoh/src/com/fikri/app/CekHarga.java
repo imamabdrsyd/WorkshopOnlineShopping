@@ -68,6 +68,7 @@ public class CekHarga extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cek harga Paket");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Kota Asal Dan Kota Tujuan"));
 
