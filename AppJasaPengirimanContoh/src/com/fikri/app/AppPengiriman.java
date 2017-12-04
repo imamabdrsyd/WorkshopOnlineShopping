@@ -570,6 +570,7 @@ public class AppPengiriman extends javax.swing.JFrame {
         paket.setLayanan(jenislayananComboBox.getSelectedItem().toString());
         pd.setBerat(Integer.parseInt(beratTextField.getText()));
         paket.setAsuransi(asuransiComboBox.getSelectedItem().toString());
+        paket.setHargabarang(Double.parseDouble(hargabarangTextField.getText()));
         pd.hargaReg();
         totalLabel.setText("" + pd.hargaReg());
      

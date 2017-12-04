@@ -36,7 +36,7 @@ public class PerhitunganDao {
                     setTotalOngkir(Double.parseDouble(paket1.getReguler())*berat);
                     biaya = getTotalOngkir();
                     if(paket.getAsuransi().equalsIgnoreCase("Ya")){
-                        total=biaya+(biaya*asuransi);
+                        total=biaya+(paket.getHargabarang()*asuransi);
                     }else if(paket.getAsuransi().equalsIgnoreCase("Tidak")){
                         total=biaya;
                     }
@@ -45,7 +45,7 @@ public class PerhitunganDao {
                     setTotalOngkir(Double.parseDouble(paket1.getKilat())*berat);
                     biaya=getTotalOngkir();
                     if(paket.getAsuransi().equalsIgnoreCase("Ya")){
-                        total=biaya+(biaya*asuransi);
+                        total=biaya+(paket.getHargabarang()*asuransi);
                     }else if(paket.getAsuransi().equalsIgnoreCase("Tidak")){
                         total=biaya;
                     }
@@ -54,7 +54,7 @@ public class PerhitunganDao {
                     setTotalOngkir(Double.parseDouble(paket1.getSds())*berat);
                     biaya=getTotalOngkir();
                     if(paket.getAsuransi().equalsIgnoreCase("Ya")){
-                        total=biaya+(biaya*asuransi);
+                        total=biaya+(paket.getHargabarang()*asuransi);
                     }else if(paket.getAsuransi().equalsIgnoreCase("Tidak")){
                         total=biaya;
                     }
@@ -63,7 +63,7 @@ public class PerhitunganDao {
                     setTotalOngkir(Double.parseDouble(paket1.getOns())*berat);
                     biaya=getTotalOngkir();
                     if(paket.getAsuransi().equalsIgnoreCase("Ya")){
-                        total=biaya+(biaya*asuransi);
+                        total=biaya+(paket.getHargabarang()*asuransi);
                     }else if(paket.getAsuransi().equalsIgnoreCase("Tidak")){
                         total=biaya;
                     }
@@ -72,7 +72,7 @@ public class PerhitunganDao {
                     setTotalOngkir(Double.parseDouble(paket1.getHds())*berat);
                     biaya=getTotalOngkir();
                     if(paket.getAsuransi().equalsIgnoreCase("Ya")){
-                        total=biaya+(biaya*asuransi);
+                        total=biaya+(paket.getHargabarang()*asuransi);
                     }else if(paket.getAsuransi().equalsIgnoreCase("Tidak")){
                         total=biaya;
                     }
