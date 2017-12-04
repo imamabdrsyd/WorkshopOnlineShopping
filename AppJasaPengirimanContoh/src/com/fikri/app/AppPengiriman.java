@@ -5,6 +5,7 @@
  */
 package com.fikri.app;
 
+import com.fikri.dao.NomorPaket;
 import com.fikri.dao.PerhitunganDao;
 import com.fikri.dao.TarifDao;
 import com.fikri.model.Paket;
@@ -99,8 +100,9 @@ public class AppPengiriman extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         kotaasalComboBox = new javax.swing.JComboBox<>();
         printtButton = new javax.swing.JButton();
-        submitButton1 = new javax.swing.JButton();
+        newButton = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        submitButton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         totalLabel = new javax.swing.JLabel();
@@ -283,12 +285,14 @@ public class AppPengiriman extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(hppenerimaTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(566, Short.MAX_VALUE))
+                .addContainerGap(596, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Paket"));
 
         jLabel16.setText("No. Paket");
+
+        nopaketTextField.setEditable(false);
 
         jLabel17.setText("Kota Tujuan");
 
@@ -317,6 +321,8 @@ public class AppPengiriman extends javax.swing.JFrame {
 
         jLabel25.setText("Harga Barang");
 
+        hargabarangTextField.setText("0");
+
         jLabel26.setText("Metode Pembayaran");
 
         metodebayarComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Credit Card", "Hutang" }));
@@ -327,12 +333,22 @@ public class AppPengiriman extends javax.swing.JFrame {
 
         printtButton.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         printtButton.setText("Print Struk");
+        printtButton.setEnabled(false);
 
-        submitButton1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
-        submitButton1.setText("Submit");
-        submitButton1.addActionListener(new java.awt.event.ActionListener() {
+        newButton.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        newButton.setText("New");
+        newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButton1ActionPerformed(evt);
+                newButtonActionPerformed(evt);
+            }
+        });
+
+        submitButton.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        submitButton.setText("Submit");
+        submitButton.setEnabled(false);
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
             }
         });
 
@@ -352,33 +368,33 @@ public class AppPengiriman extends javax.swing.JFrame {
                     .addComponent(jLabel24)
                     .addComponent(jLabel25)
                     .addComponent(jLabel26)
-                    .addComponent(jLabel27))
-                .addGap(60, 60, 60)
+                    .addComponent(jLabel27)
+                    .addComponent(submitButton))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(60, 60, 60)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(metodebayarComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(submitButton1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(nopaketTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jenisComboBox, 0, 185, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(beratTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(3, 3, 3)
+                                    .addComponent(jLabel20))
+                                .addComponent(hargabarangTextField)
+                                .addComponent(jenislayananComboBox, 0, 185, Short.MAX_VALUE)
+                                .addComponent(kotaasalComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(kotatujuanComboBox, 0, 185, Short.MAX_VALUE)
+                                .addComponent(asuransiComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(newButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                         .addComponent(printtButton)
-                        .addGap(20, 20, 20))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nopaketTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jenisComboBox, 0, 185, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(beratTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel20))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(hargabarangTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jenislayananComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 169, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(kotaasalComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(kotatujuanComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 165, Short.MAX_VALUE))
-                            .addComponent(asuransiComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,10 +444,11 @@ public class AppPengiriman extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel26)
                     .addComponent(metodebayarComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 563, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(printtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(printtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -561,24 +578,43 @@ public class AppPengiriman extends javax.swing.JFrame {
     }//GEN-LAST:event_asuransiComboBoxActionPerformed
 
     private void kotapenerimaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kotapenerimaComboBoxActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_kotapenerimaComboBoxActionPerformed
 
-    private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
-        try {
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
+        namapengirimTextField.setText("");
+        namapenerimaTextField.setText("");
+        alamatpengirimTextField.setText("");
+        alamatpenerimaTextField.setText("");
+        pospenerimaTextField.setText("");
+        pospengirimTextField.setText("");
+        provinsipenerimaTextField.setText("");
+        provinsipengirimTextField.setText("");
+        hppenerimaTextField10.setText("");
+        hppengirimTextField.setText("");
+        beratTextField.setText("");
+        hargabarangTextField.setText("0");
+        totalLabel.setText("Rp.0 .-");
+        printtButton.setEnabled(false);
+        nopaketTextField.setText(NomorPaket.generateResiNumber());
+        submitButton.setEnabled(true);
+    }//GEN-LAST:event_newButtonActionPerformed
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+       try {
         pd.setKota(kotatujuanComboBox.getSelectedItem().toString());
         paket.setLayanan(jenislayananComboBox.getSelectedItem().toString());
         pd.setBerat(Integer.parseInt(beratTextField.getText()));
         paket.setAsuransi(asuransiComboBox.getSelectedItem().toString());
         paket.setHargabarang(Double.parseDouble(hargabarangTextField.getText()));
         pd.hargaReg();
-        totalLabel.setText("" + pd.hargaReg());
+        totalLabel.setText("Rp. " + pd.hargaReg());
      
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Data masih ada yang kosong","ERROR",JOptionPane.ERROR_MESSAGE);
         }
-        
-    }//GEN-LAST:event_submitButton1ActionPerformed
+        printtButton.setEnabled(true);
+    }//GEN-LAST:event_submitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -668,13 +704,14 @@ public class AppPengiriman extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> metodebayarComboBox;
     private javax.swing.JTextField namapenerimaTextField;
     private javax.swing.JTextField namapengirimTextField;
+    private javax.swing.JButton newButton;
     private javax.swing.JTextField nopaketTextField;
     private javax.swing.JTextField pospenerimaTextField;
     private javax.swing.JTextField pospengirimTextField;
     private javax.swing.JButton printtButton;
     private javax.swing.JTextField provinsipenerimaTextField;
     private javax.swing.JTextField provinsipengirimTextField;
-    private javax.swing.JButton submitButton1;
+    private javax.swing.JButton submitButton;
     private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }
