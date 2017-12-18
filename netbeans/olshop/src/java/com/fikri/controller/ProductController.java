@@ -4,6 +4,7 @@ package com.fikri.controller;
 import com.fikri.dao.ProductService;
 import com.fikri.model.Product;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,7 @@ public class ProductController {
     }
     @RequestMapping(value="/addcart/{id}")
     public String addCart(HttpSession session,@PathVariable Integer id, Model model){
+        double hargaTotal=0.0;
 try {
             Product prod = ps.findById(id);
             if (prod == null) {
@@ -52,8 +54,13 @@ try {
             }
             cartBean.getCartList().put(no++, prod);
             int count = cartBean.getCartList().size();
+            Map<Integer, Product> products = cartBean.getCartList();
+        for (Map.Entry<Integer, Product> entry : products.entrySet()) {
+            hargaTotal+= entry.getValue().getCost();
+        }
             model.addAttribute("carts", count);
             session.setAttribute("cart", cartBean);
+            session.setAttribute("hargaTotal", hargaTotal);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,24 +73,21 @@ try {
         return "cart";
     }
     
-    @RequestMapping(value = "/remove/{productID}/{value}")
-    public String removeCart(@PathVariable Integer productID, Model model, HttpSession session) {
-
+    @RequestMapping(value = "/remove/{key}")
+    public String removeCart(@PathVariable Integer key, Model model, HttpSession session) {
+        double hargaTotal=0.0;
         try {
-            Product prod = ps.findById(productID);
-            if (prod == null) {
-                model.addAttribute("errMsg", "Belom ada barang yg dipilih");
-                return "tblproduct";
-            }
-            cartBean.getCartList().remove(no, prod);
-            cartBean.getCartList().remove(ps);
-            int count = cartBean.getCartList().size();
-            model.addAttribute("carts", count);
-            session.setAttribute("cartsess", cartBean);
-
+           
+            cartBean.getCartList().remove(key);
+            
+        Map<Integer, Product> products = cartBean.getCartList();
+        for (Map.Entry<Integer, Product> entry : products.entrySet()) {
+            hargaTotal+= entry.getValue().getCost();
+        }
+        session.setAttribute("hargaTotal", hargaTotal);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "cart";
+        return "redirect:/product/cart";
     }
 }
