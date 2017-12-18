@@ -90,4 +90,13 @@ try {
         }
         return "redirect:/product/cart";
     }
+    @RequestMapping(value="/checkout")
+    public String checkout(HttpSession session){
+        double hargaTotal=(double) session.getAttribute("hargaTotal");
+        session.setAttribute("hargaTotalx", hargaTotal);
+        session.setAttribute("carts", 0);
+        session.removeAttribute("cart");
+        session.removeAttribute("hargaTotal");
+        return "checkout";
+    }
 }

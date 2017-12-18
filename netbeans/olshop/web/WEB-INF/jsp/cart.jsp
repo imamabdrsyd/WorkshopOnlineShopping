@@ -45,7 +45,7 @@ body{
 }
         </style>
     </head>
-    <body>
+    <body>x
         <jsp:include page="head.jsp"/></br>
         <h2>Cart summary</h2>
   <table border="1" id="cart">
@@ -61,6 +61,6 @@ body{
         </c:forEach>
   </table>
          <p><h3>total:Rp.${hargaTotal}</h3></p></br> 
-    <a href="#" class="btn btn-primary"> Beli Sekarang</a>
+    <a href="${pageContext.request.contextPath}/product/checkout" class="btn btn-primary"> Beli Sekarang</a>
     </body>
 </html>
