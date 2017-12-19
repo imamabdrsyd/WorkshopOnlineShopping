@@ -27,7 +27,6 @@ public class RegistrationController {
     @RequestMapping() 
     public String registerForm(Model model) {
         RegisterFormBean registerBean = new RegisterFormBean();
-        //registerBean.setLastName("Smith");
         model.addAttribute("registerBean", registerBean);
         return "registration";
     }
@@ -37,7 +36,7 @@ public class RegistrationController {
             Model model) {
         User user = new User();
         String encryptedPassword = 
-                PasswordDigest.createEncryptedPassword(registerBean.getPassword());
+        PasswordDigest.createEncryptedPassword(registerBean.getPassword());
         user.setFirstName(registerBean.getFirstName());
         user.setLastName(registerBean.getLastName());
         user.setUsername(registerBean.getUsername());

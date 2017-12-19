@@ -47,12 +47,9 @@ public class ProductService {
     }
     
     public List<Product> findByKategori(String kategori){
-//        Query query =
-  //      query.setParameter("kategori", kategori);
         em = emf.createEntityManager();
         List<Product> lists;
         lists = this.em.createNamedQuery("Product.findByKategori").setParameter("kategori", kategori).getResultList();
         return lists;
-//        return em.find(Product.class, kategori);
     }
 }

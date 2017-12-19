@@ -14,7 +14,6 @@
     <body>
 
        <jsp:include page="head.jsp"/>
-<!--       <p>cart: ${iterator}</p>-->
        
        <c:forEach var="p" items="${kateg}" > 
           <div class="w3-row-padding w3-padding-16 w3-center" id="main">

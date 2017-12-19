@@ -99,4 +99,12 @@ try {
         session.removeAttribute("hargaTotal");
         return "checkout";
     }
+    @RequestMapping(value="/keluar")
+    public String keluar(HttpSession session){
+        session.setAttribute("carts", 0);
+        session.removeAttribute("cart");
+        session.removeAttribute("carts");
+        session.removeAttribute("hargaTotal");
+        return "redirect:/logout";
+    }
 }

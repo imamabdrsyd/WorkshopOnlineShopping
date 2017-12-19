@@ -45,18 +45,19 @@ body{
 }
         </style>
     </head>
-    <body>x
+    <body>
         <jsp:include page="head.jsp"/></br>
         <h2>Cart summary</h2>
   <table border="1" id="cart">
             <tr class="header">
-                <td>NO</td><td>Nama Product</td><td>Harga</td><td>Edit</td>
+                <td>NO</td><td>Nama Product</td><td>Harga</td><td>Kategori</td><td>Edit</td>
             </tr> 
             <c:forEach var="c" items="${cart.cartList}" varStatus="x">
              <tr>        
                 <td>${x.count}</td> 
                 <td>${c.value.description}</td>
                 <td>Rp.${c.value.cost}</td>
+                <td>${c.value.kategori}</td>
                 <td><a href="${pageContext.request.contextPath}/product/remove/${c.key}" class="btn btn-primary">Hapus dari keranjang</a></td>          
         </c:forEach>
   </table>

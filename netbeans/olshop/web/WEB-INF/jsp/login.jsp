@@ -18,13 +18,13 @@
         <jsp:include page="head.jsp"/> 
         <div class="container">
 
-            <b>${errMsg}</b>
+           
             <div class="card card-container">
                 <img id="profile-img" class="profile-img-card" src="${pageContext.request.contextPath}/resources/img/user.png" />
                 <p id="profile-name" class="profile-name-card"></p>
                 <div class="form-signin">
       
-                
+                 <b>${errMsg}</b>
                 <div class="panel-body">
                     <form:form action="${pageContext.request.contextPath}/login/check" modelAttribute="loginBean" method="POST" >
                     

@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LogoutController {
     @RequestMapping() 
     public String logout(HttpSession session, Model model) {
+        session.removeAttribute("carts");
         session.invalidate();
+
         return "welcome";
     }
 }
